@@ -26,10 +26,10 @@
     <div class="collapse navbar-collapse" id="main-menu">
       <ul class="nav navbar-nav">
         <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Utilities', utilities_path %></li>
       </ul>
     </div>
   </nav>
-
   
   <% flash.each do |severity, message| %>
     <div class="alert alert-<%= severity %>">

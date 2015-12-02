@@ -1,0 +1,35 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li class="active">Utilities</li>
+</ol>
+
+<%= link_to 'New Utility', new_utility_path, class: 'btn btn-success pull-right' %>
+
+<h2>Utilities</h2>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Name</th>
+  </tr>
+  <tbody>
+    <% @utilities.each do |utility| %>
+      <tr>
+        <td>
+          <%= utility.name %>
+        
+          <span class="pull-right">
+            <%= link_to 'Show', utility_path(utility), 
+              class: 'btn btn-default btn-xs' %>
+            <%= link_to 'Edit', edit_utility_path(utility), 
+              class: 'btn btn-default btn-xs' %>
+            <%= link_to 'Delete', utility_path(utility), 
+              method: :delete,
+              class: 'btn btn-danger btn-xs',
+              data: { confirm: "Are you sure you want to delete #{utility.name}?"} %>
+          </span>
+        
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

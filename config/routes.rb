@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  resources :utilities
   root to: 'homes#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
