@@ -9,7 +9,8 @@ class BillsController < ApplicationController
 
   def new
     @utilities = Utility.all
-    @bill = Bill.new
+    utility_id = params[:utility_id]
+    @bill = Bill.new(utility_id: utility_id)
   end
 
   def create
