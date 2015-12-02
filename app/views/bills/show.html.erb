@@ -1,0 +1,17 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Bills', bills_path %></li>
+  <li class="active"><%= @bill.utility.name %></li>
+</ol>
+
+<h2><%= @bill.utility.name %></h2>
+
+<dl>
+  
+  <dt>Amount</dt>
+  <dd><%= @bill.amount %></dd>
+
+  <dt>Due on</dt>
+  <dd><%= @bill.due_on %></dd>
+
+</dl>

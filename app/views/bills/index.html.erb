@@ -1,0 +1,38 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li class="active">Bill</li>
+</ol>
+
+<%= link_to 'New Bill', new_bill_path, class: 'btn btn-success pull-right' %>
+
+<h2>Bills</h2>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <th>Utility name</th>
+    <th>Amount</th>
+    <th>Due on</th>
+  </thead>
+  <tbody>
+    <% @bills.each do |bill| %>
+      <tr>
+        <td><%= bill.utility.name %></td>
+        <td><%= bill.amount %></td>
+        <td>
+          <%= bill.due_on %>
+
+          <span class="pull-right">
+            <%= link_to 'Show', bill_path(bill),
+              class: 'btn btn-default btn-xs' %>
+            <%= link_to 'Edit', edit_bill_path(bill),
+              class: 'btn btn-default btn-xs' %>
+            <%= link_to 'Delete', bill_path(bill),
+              method: :delete,
+              class: 'btn btn-danger btn-xs',
+              data: { confirm: "Are you sure you want to delete this bill?" } %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
