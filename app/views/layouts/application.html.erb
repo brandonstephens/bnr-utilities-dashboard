@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Utilities Dashboard</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+  
+  <div class="page-header">
+    <h1>Utilities Dashboard</h1>
+  </div>
+
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#main-menu">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="main-menu">
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Home', root_path %></li>
+      </ul>
+    </div>
+  </nav>
+
+  
+  <% flash.each do |severity, message| %>
+    <div class="alert alert-<%= severity %>">
+      <%= message %>
+    </div>
+  <% end %>
+
+  <%= yield %>
+</div><!-- end of container -->
+
+</body>
+</html>
