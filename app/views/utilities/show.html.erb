@@ -4,4 +4,32 @@
   <li class="active"><%= @utility.name %></li>
 </ol>
 
-<h2><%= @utility.name %></h2>
+<h2><%= @utility.name %> <small>Bills</small></h2>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <th>Amount</th>
+    <th>Due</th>
+  </thead>
+  <tbody>
+    <% @bills.each do |bill| %>
+      <tr>
+        <td>$<%= bill.amount %></td>
+        <td>
+          <%= bill.due_on %>
+
+          <span class="pull-right">
+            <%= link_to 'Show', bill_path(bill),
+              class: 'btn btn-default btn-xs' %>
+            <%= link_to 'Edit', edit_bill_path(bill),
+              class: 'btn btn-default btn-xs' %>
+            <%= link_to 'Delete', bill_path(bill),
+              method: :delete,
+              class: 'btn btn-danger btn-xs',
+              data: { confirm: "Are you sure you want to delete this bill?" } %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -6,6 +6,7 @@ class UtilitiesController < ApplicationController
 
   def show
     @utility = Utility.find(params[:id])
+    @bills = @utility.bills
   end
 
   def new
