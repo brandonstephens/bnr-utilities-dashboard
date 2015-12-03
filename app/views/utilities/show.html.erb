@@ -4,7 +4,7 @@
   <li class="active"><%= @utility.name %></li>
 </ol>
 
-<%= link_to 'New Bill' , new_bill_path(:utility_id => @utility.id), class: 'btn btn-success pull-right' %>
+<%= link_to "New Bill for #{@utility.name}" , new_bill_path(:utility_id => @utility.id), class: 'btn btn-success pull-right' %>
 
 <h1><%= @utility.name %> <small>Bills</small></h1>
 
