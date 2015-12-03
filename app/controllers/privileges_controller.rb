@@ -38,6 +38,7 @@ class PrivilegesController < ApplicationController
 
     if @privilege.destroyed?
       flash[:success] = 'Deleted privilege'
+      UtilityMailer.unsharing_notification(@privilege, current_user).deliver
       redirect_to utility_privileges_path(@utility)
     else
       flash[:error] = 'Could not delete privilege'

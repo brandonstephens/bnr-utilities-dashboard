@@ -39,13 +39,14 @@ class BillsController < ApplicationController
     authorize @bill
 
     respond_to do |format|
-       if @bill.save
-         format.html { redirect_to @bill, flash: {success: 'Created bill'} }
-         format.json { render json: @bill }
-       else
-         format.html { render :new, flash: {error: 'Could not create bill'}}
-         format.json { render json: @bill, status: :unprocessable_entity }
-       end
+      if @bill.save
+        UtilityMailer.newbill_notification(@bill).deliver
+        format.html { redirect_to @bill, flash: {success: 'Created bill'} }
+        format.json { render json: @bill }
+      else
+        format.html { render :new, flash: {error: 'Could not create bill'}}
+        format.json { render json: @bill, status: :unprocessable_entity }
+      end
     end
   end
 

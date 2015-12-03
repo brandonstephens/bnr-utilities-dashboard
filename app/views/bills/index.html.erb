@@ -3,7 +3,12 @@
   <li class="active">Bill</li>
 </ol>
 
-<%= link_to 'New Bill', new_bill_path, class: 'btn btn-success pull-right' %>
+<div class="pull-right">
+  <%= link_to 'Export Bills', export_requests_path, method: :post, 
+    class: 'btn btn-default' %>
+  <%= link_to 'New Bill', new_bill_path, class: 'btn btn-success' %>
+</div>
+
 
 <h2>Bills</h2>
 

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :privileges, only: [:index, :new, :create, :destroy]
   end
   resources :bills
+  resources :export_requests
   root to: 'homes#show'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <p>A new bill for $<%= @bill.amount %>, due on <%= @bill.due_on %>, was added to <%= @bill.utility.name %></p>
+
+  <p><%= link_to bill_url(@bill), bill_url(@bill) %></p>
+</body>
+</html>
