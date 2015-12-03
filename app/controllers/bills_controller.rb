@@ -1,5 +1,7 @@
 class BillsController < ApplicationController
 
+  #protect_from_forgery with: :null_session, only: :create
+
   def index
     @bills = Bill.all
 
@@ -28,10 +30,14 @@ class BillsController < ApplicationController
     @utilities = Utility.all
     @bill = Bill.new(bill_params)
 
-    if @bill.save
-      redirect_to @bill
-    else
-      render :new
+    respond_to do |format|
+       if @bill.save
+         format.html { redirect_to @bill, flash: {success: 'Created bill'} }
+         format.json { render json: @bill }
+       else
+         format.html { render :new, flash: {error: 'Could not create bill'}}
+         format.json { render json: @bill, status: :unprocessable_entity }
+       end
     end
   end
 
