@@ -61,7 +61,18 @@ class BillsController < ApplicationController
 
   def destroy
     @bill = Bill.find(params[:id])
+    
     @bil.destroy
+
+    respond_to do |format|
+      if @bill.destroyed?
+        format.html{ redirect_to bills_path, flash: {success: 'Deleted bill'} }
+        format.json{ render json: @bill, status: 400 }
+      else
+        
+      end
+    end
+
     redirect_to bills_path
   end
 
