@@ -4,7 +4,9 @@ class Policy
   NotAuthorized = Class.new(StandardError)
 
   POLICIES = {
-    Utility => UtilityPolicy
+    Utility => UtilityPolicy,
+    Bill => BillPolicy,
+    Privilege => PrivilegePolicy
   }
 
   def self.for(record, user)

@@ -15,7 +15,9 @@ class BillsController < ApplicationController
 
   def show
     @bill = current_user.bills.find(params[:id])
-
+    
+    authorize @bill
+    
     respond_to do |format|
       format.html
       format.json
@@ -26,11 +28,15 @@ class BillsController < ApplicationController
     @utilities = current_user.utilities.all
     utility_id = params[:utility_id]
     @bill = Bill.new(utility_id: utility_id)
+
+    authorize @bill
   end
 
   def create
     @utilities = current_user.utilities.all
     @bill = Bill.new(bill_params)
+
+    authorize @bill
 
     respond_to do |format|
        if @bill.save
@@ -46,11 +52,15 @@ class BillsController < ApplicationController
   def edit
     @utilities = current_user.utilities.all
     @bill = current_user.bills.find(params[:id])
+
+    authorize @bill
   end
 
   def update
     @utilities = current_user.utilities.all
     @bill = current_user.bills.find(params[:id])
+
+    authorize @bill
 
     if @bill.update_attributes(bill_params)
       flash[:success] = 'Updated Bill'
@@ -64,6 +74,8 @@ class BillsController < ApplicationController
   def destroy
     @bill = current_user.bills.find(params[:id])
     
+    authorize @bill
+
     @bil.destroy
 
     respond_to do |format|

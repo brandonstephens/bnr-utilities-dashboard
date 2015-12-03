@@ -8,11 +8,15 @@ class PrivilegesController < ApplicationController
   def new
     @utility = Utility.find(params[:utility_id])
     @privilege = @utility.privileges.new
+
+    authorize @privilege
   end
 
   def create
     @utility = Utility.find(params[:utility_id])
     @privilege = @utility.privileges.new(privilege_params)
+
+    authorize @privilege
 
     if @privilege.save
       flash[:success] = 'Created privilege'
@@ -26,6 +30,8 @@ class PrivilegesController < ApplicationController
   def destroy
     @utility = Utility.find(params[:utility_id])
     @privilege = @utility.privileges.find(params[:id])
+
+    authorize @privilege
 
     @privilege.destroy
 

@@ -15,4 +15,6 @@ class ApplicationController < ActionController::Base
     Policy.for(record, current_user)  
   end
 
+  helper_method :policy
+
 end

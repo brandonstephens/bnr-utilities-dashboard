@@ -1,23 +1,11 @@
-class BillPolicy < Policy
+class PrivilegePolicy < Policy
 
-  def show?
-    has_permission?(:read_write, :owner)
-  end
-  
   def new?
-    true
+    create?    
   end
 
   def create?
-    has_permission?(:read, :read_write, :owner)
-  end
-
-  def edit?
-    update?
-  end
-
-  def update?
-    has_permission?(:read_write, :owner)
+    has_permission?(:owner)
   end
 
   def destroy?

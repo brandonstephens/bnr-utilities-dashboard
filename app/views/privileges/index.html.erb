@@ -22,10 +22,12 @@
         <td>
           <%= privilege.permission.humanize %>
           <span class="pull-right">
-            <%= link_to 'Delete', utility_privilege_path(privilege.utility, privilege),
-              method: :delete,
-              class: 'btn btn-danger btn-xs',
-              data: {confirm: "Are you sure you want to delete this privilege?"} %>
+            <% if policy(privilege).destroy? %>
+              <%= link_to 'Delete', utility_privilege_path(privilege.utility, privilege),
+                method: :delete,
+                class: 'btn btn-danger btn-xs',
+                data: {confirm: "Are you sure you want to delete this privilege?"} %>
+            <% end %>
           </span>
         </td>
       </tr>

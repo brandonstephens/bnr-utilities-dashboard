@@ -18,16 +18,22 @@
           <%= link_to utility.name, utility_path(utility) %>
         
           <span class="pull-right">
-            <%= link_to 'Show', utility_path(utility), 
-              class: 'btn btn-default btn-xs' %>
-            <%= link_to 'Edit', edit_utility_path(utility), 
-              class: 'btn btn-default btn-xs' %>
+            <% if policy(utility).show? %>
+              <%= link_to 'Show', utility_path(utility), 
+                class: 'btn btn-default btn-xs' %>
+            <% end %>
+            <% if policy(utility).edit? %>
+              <%= link_to 'Edit', edit_utility_path(utility), 
+                class: 'btn btn-default btn-xs' %>
+            <% end %>
             <%= link_to 'Share', utility_privileges_path(utility),
               class: 'btn btn-default btn-xs' %>
-            <%= link_to 'Delete', utility_path(utility), 
-              method: :delete,
-              class: 'btn btn-danger btn-xs',
-              data: { confirm: "Are you sure you want to delete #{utility.name}?"} %>
+            <% if policy(utility).destroy? %>
+              <%= link_to 'Delete', utility_path(utility), 
+                method: :delete,
+                class: 'btn btn-danger btn-xs',
+                data: { confirm: "Are you sure you want to delete #{utility.name}?"} %>
+            <% end %>
           </span>
         
         </td>

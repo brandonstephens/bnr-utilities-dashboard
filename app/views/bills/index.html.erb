@@ -20,16 +20,21 @@
         <td>$<%= bill.amount %></td>
         <td>
           <%= bill.due_on %>
-
           <span class="pull-right">
-            <%= link_to 'Show', bill_path(bill),
-              class: 'btn btn-default btn-xs' %>
-            <%= link_to 'Edit', edit_bill_path(bill),
-              class: 'btn btn-default btn-xs' %>
-            <%= link_to 'Delete', bill_path(bill),
-              method: :delete,
-              class: 'btn btn-danger btn-xs',
-              data: { confirm: "Are you sure you want to delete this bill?" } %>
+            <% if policy(bill).show? %>
+              <%= link_to 'Show', bill_path(bill),
+                class: 'btn btn-default btn-xs' %>
+            <% end %>
+            <% if policy(bill).edit? %>
+              <%= link_to 'Edit', edit_bill_path(bill),
+                class: 'btn btn-default btn-xs' %>
+            <% end %>
+            <% if policy(bill).destroy? %>
+              <%= link_to 'Delete', bill_path(bill),
+                method: :delete,
+                class: 'btn btn-danger btn-xs',
+                data: { confirm: "Are you sure you want to delete this bill?" } %>
+            <% end %>
           </span>
         </td>
       </tr>
