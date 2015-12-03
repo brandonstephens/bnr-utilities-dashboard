@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  utility_id: 
+  user_id: 
+  permission: 1
+
+two:
+  utility_id: 
+  user_id: 
+  permission: 1

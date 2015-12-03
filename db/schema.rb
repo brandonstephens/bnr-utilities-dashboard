@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203153044) do
+ActiveRecord::Schema.define(version: 20151203155503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20151203153044) do
   end
 
   add_index "bills", ["utility_id"], name: "index_bills_on_utility_id", using: :btree
+
+  create_table "privileges", force: true do |t|
+    t.integer  "utility_id"
+    t.integer  "user_id"
+    t.integer  "permission"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "privileges", ["user_id"], name: "index_privileges_on_user_id", using: :btree
+  add_index "privileges", ["utility_id"], name: "index_privileges_on_utility_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -48,9 +59,6 @@ ActiveRecord::Schema.define(version: 20151203153044) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
-
-  add_index "utilities", ["user_id"], name: "index_utilities_on_user_id", using: :btree
 
 end

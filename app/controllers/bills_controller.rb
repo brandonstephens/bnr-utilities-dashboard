@@ -25,12 +25,12 @@ class BillsController < ApplicationController
   def new
     @utilities = current_user.utilities.all
     utility_id = params[:utility_id]
-    @bill = current_user.bills.new(utility_id: utility_id)
+    @bill = Bill.new(utility_id: utility_id)
   end
 
   def create
     @utilities = current_user.utilities.all
-    @bill = current_user.bills.new(bill_params)
+    @bill = Bill.new(bill_params)
 
     respond_to do |format|
        if @bill.save

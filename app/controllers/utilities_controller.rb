@@ -22,8 +22,14 @@ class UtilitiesController < ApplicationController
   end
 
   def create
-    @utility = current_user.utilities.new(utility_params)
-    if @utility.save
+    @utility = Utility.new(utility_params)
+    privilege = Privilege.new(
+      user: current_user,
+      utility: @utility,
+      permission: 'owner'
+    )
+
+    if @utility.save && privilege.save
       redirect_to utilities_path
     else
       render :new
