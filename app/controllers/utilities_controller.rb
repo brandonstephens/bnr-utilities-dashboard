@@ -2,6 +2,11 @@ class UtilitiesController < ApplicationController
 
   def index
     @utilities = Utility.all
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def show

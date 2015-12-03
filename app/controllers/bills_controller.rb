@@ -7,7 +7,7 @@ class BillsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @bills }
+      format.json
     end
   end
 
@@ -16,7 +16,7 @@ class BillsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @bill }
+      format.json
     end
   end
 
