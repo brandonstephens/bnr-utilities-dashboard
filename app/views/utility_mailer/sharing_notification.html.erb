@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <p>Hi there, we thought you should know that your friend, <%= @sharer.email %>, has shared one of their utilities with you: <%= link_to @utility.name, utility_url(@utility) %>.</p>
+</body>
+</html>

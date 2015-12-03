@@ -20,6 +20,7 @@ class PrivilegesController < ApplicationController
 
     if @privilege.save
       flash[:success] = 'Created privilege'
+      UtilityMailer.sharing_notification(@privilege, current_user).deliver
       redirect_to utility_privileges_path(@utility)
     else
       flash[:error] = 'Could not create privilege'
