@@ -5,7 +5,7 @@ class BillsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @bills = Bill.all
+    @bills = current_user.bills.all
 
     respond_to do |format|
       format.html
@@ -14,7 +14,7 @@ class BillsController < ApplicationController
   end
 
   def show
-    @bill = Bill.find(params[:id])
+    @bill = current_user.bills.find(params[:id])
 
     respond_to do |format|
       format.html
@@ -23,14 +23,14 @@ class BillsController < ApplicationController
   end
 
   def new
-    @utilities = Utility.all
+    @utilities = current_user.utilities.all
     utility_id = params[:utility_id]
-    @bill = Bill.new(utility_id: utility_id)
+    @bill = current_user.bills.new(utility_id: utility_id)
   end
 
   def create
-    @utilities = Utility.all
-    @bill = Bill.new(bill_params)
+    @utilities = current_user.utilities.all
+    @bill = current_user.bills.new(bill_params)
 
     respond_to do |format|
        if @bill.save
@@ -44,13 +44,13 @@ class BillsController < ApplicationController
   end
 
   def edit
-    @utilities = Utility.all
-    @bill = Bill.find(params[:id])
+    @utilities = current_user.utilities.all
+    @bill = current_user.bills.find(params[:id])
   end
 
   def update
-    @utilities = Utility.all
-    @bill = Bill.find(params[:id])
+    @utilities = current_user.utilities.all
+    @bill = current_user.bills.find(params[:id])
 
     if @bill.update_attributes(bill_params)
       flash[:success] = 'Updated Bill'
@@ -62,7 +62,7 @@ class BillsController < ApplicationController
   end
 
   def destroy
-    @bill = Bill.find(params[:id])
+    @bill = current_user.bills.find(params[:id])
     
     @bil.destroy
 
