@@ -1,6 +1,8 @@
 class BillsController < ApplicationController
-
   #protect_from_forgery with: :null_session, only: :create
+  respond_to :html, :json
+
+  before_action :authenticate_user!
 
   def index
     @bills = Bill.all
