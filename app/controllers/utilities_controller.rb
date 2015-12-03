@@ -4,7 +4,7 @@ class UtilitiesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @utilities = Utility.all
+    @utilities = current_user.utilities.all
 
     respond_to do |format|
       format.html
@@ -13,16 +13,16 @@ class UtilitiesController < ApplicationController
   end
 
   def show
-    @utility = Utility.find(params[:id])
+    @utility = current_user.utilities.find(params[:id])
     @bills = @utility.bills
   end
 
   def new
-    @utility = Utility.new
+    @utility = current_user.utilities.new
   end
 
   def create
-    @utility = Utility.new(utility_params)
+    @utility = current_user.utilities.new(utility_params)
     if @utility.save
       redirect_to utilities_path
     else
@@ -31,11 +31,11 @@ class UtilitiesController < ApplicationController
   end
 
   def edit
-    @utility = Utility.find(params[:id])
+    @utility = current_user.utilities.find(params[:id])
   end
 
   def update
-    @utility = Utility.find(params[:id])
+    @utility = current_user.utilities.find(params[:id])
     if @utility.update_attributes(utility_params)
       redirect_to utilities_path
     else
