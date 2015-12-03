@@ -42,4 +42,10 @@ gem 'spring',        group: :development
 gem 'devise'
 
 # debugging in dev
-gem 'pry-rails', group: [:development, :test]
+#gem 'pry-rails', group: [:development, :test]
+
+gem 'sidekiq'
+
+group :development, :test do
+  gem 'pry-rails'
+end
