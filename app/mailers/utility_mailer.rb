@@ -17,16 +17,10 @@ class UtilityMailer < ActionMailer::Base
     mail to: privilege.user.email, subject: subject
   end
 
-  # def newbill_notification(bill)
-  #   @bill = bill
-  #   people = bill.utility.privileges
-  #   subject = "A new bill was added to #{bill.utility.name}"
-    
-    
-  #   people.each do |person| {
-  #     person.user.email
-  #   }
-
-  #   mail to: , subject: subject
-  # end
+  def newbill_notification(bill, address)
+    @bill = bill
+    subject = "A new bill was added to #{bill.utility.name}" 
+  
+    mail to: address , subject: subject
+  end
 end

@@ -45,6 +45,7 @@ gem 'devise'
 #gem 'pry-rails', group: [:development, :test]
 
 gem 'sidekiq'
+gem 'sinatra'
 
 group :development, :test do
   gem 'pry-rails'

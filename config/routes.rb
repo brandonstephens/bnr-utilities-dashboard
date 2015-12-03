@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   
   devise_for :users
@@ -6,6 +8,7 @@ Rails.application.routes.draw do
   end
   resources :bills
   resources :export_requests
+  mount Sidekiq::Web, at: '/sidekiq'
   root to: 'homes#show'
 
   # The priority is based upon order of creation: first created -> highest priority.

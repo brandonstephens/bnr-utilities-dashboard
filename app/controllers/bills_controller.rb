@@ -35,12 +35,17 @@ class BillsController < ApplicationController
   def create
     @utilities = current_user.utilities.all
     @bill = Bill.new(bill_params)
+    people = @bill.utility.privileges
 
     authorize @bill
 
     respond_to do |format|
       if @bill.save
-        UtilityMailer.newbill_notification(@bill).deliver
+
+        people.each do |person|
+          UtilityMailer.newbill_notification(@bill,person.user.email).deliver
+        end
+        
         format.html { redirect_to @bill, flash: {success: 'Created bill'} }
         format.json { render json: @bill }
       else
