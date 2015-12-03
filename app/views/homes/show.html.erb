@@ -1,1 +1,10 @@
-<div id="bills-chart" data-bills="<%= @bills.to_json %>"></div>
+<% if user_signed_in? %>
+  <div id="bills-chart" data-bills="<%= @bills.to_json %>"></div>
+<% else %>
+  <div class="jumbotron">
+    <h1>Utilites Dashboard</h1>
+    <p>The Utilities Dashboard makes it easy to track your utility bills over time!</p>
+    <p><%= link_to 'Sign up!', new_user_registration_path,
+      class: 'btn btn-primary btn-lg' %></p>
+  </div>
+<% end %>

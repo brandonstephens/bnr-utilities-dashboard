@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  devise_for :users
   resources :utilities
   resources :bills
   root to: 'homes#show'
