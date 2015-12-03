@@ -1,0 +1,34 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Utilities', utilities_path %></li>
+  <li><%= link_to @utility.name, utility_path(@utility) %></li>
+  <li class="active">User Privileges</li>
+</ol>
+
+<%= link_to 'New Privilege', new_utility_privilege_path(@utility),
+  class: 'btn btn-success pull-right' %>
+
+<h1>User Privileges</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <th>User</th>
+    <th>Permission</th>
+  </thead>
+  <tbody>
+    <% @privileges.each do |privilege| %>
+      <tr>
+        <td><%= privilege.user.email %></td>
+        <td>
+          <%= privilege.permission.humanize %>
+          <span class="pull-right">
+            <%= link_to 'Delete', utility_privilege_path(privilege.utility, privilege),
+              method: :delete,
+              class: 'btn btn-danger btn-xs',
+              data: {confirm: "Are you sure you want to delete this privilege?"} %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

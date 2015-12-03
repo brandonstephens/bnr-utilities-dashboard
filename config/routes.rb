@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   devise_for :users
-  resources :utilities
+  resources :utilities do
+    resources :privileges, only: [:index, :new, :create, :destroy]
+  end
   resources :bills
   root to: 'homes#show'
 

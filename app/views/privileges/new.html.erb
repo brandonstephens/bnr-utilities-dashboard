@@ -1,0 +1,29 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Utilities', utilities_path %></li>
+  <li><%= link_to @utility.name, utility_path(@utility) %></li>
+  <li><%= link_to 'User Privileges', utility_privileges_path(@utility) %></li>
+  <li class="active">New Privilege</li>
+</ol>
+
+<h1>New Privilege</h1>
+
+<%= form_for [@utility, @privilege] do |f| %>
+
+  <fieldset class="form-group">
+    <%= f.label :user %>
+    <%= f.collection_select :user_id, User.all, :id, :email, {},
+      class: 'form-control' %>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <%= f.label :permission %>
+    <%= f.select :permission,
+      Privilege.permissions.map { |p, _| [p.humanize, p] },
+      {},
+      class: 'form-control' %>
+  </fieldset>
+
+  <%= f.submit nil, class: 'btn btn-primary' %>
+
+<% end %>

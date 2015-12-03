@@ -22,6 +22,8 @@
               class: 'btn btn-default btn-xs' %>
             <%= link_to 'Edit', edit_utility_path(utility), 
               class: 'btn btn-default btn-xs' %>
+            <%= link_to 'Share', utility_privileges_path(utility),
+              class: 'btn btn-default btn-xs' %>
             <%= link_to 'Delete', utility_path(utility), 
               method: :delete,
               class: 'btn btn-danger btn-xs',
