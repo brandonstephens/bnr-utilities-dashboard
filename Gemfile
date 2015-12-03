@@ -40,3 +40,6 @@ gem 'spring',        group: :development
 
 # authorization stuffs
 gem 'devise'
+
+# debugging in dev
+gem 'pry-rails', group: [:development, :test]
